@@ -13,11 +13,11 @@ from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 
-#Correlation Between Gender, Height 
-#And Shoe Size In Australian University Students
-#y-height, x-shoe size (american)
-#females: y=2.9x + 143.7
-#males:  y=3.6x + 142.9
+# Correlation Between Gender, Height
+# And Shoe Size In Australian University Students
+# y-height, x-shoe size (american)
+# females: y=2.9x + 143.7
+# males:  y=3.6x + 142.9
 
 
 def _replace_item(x):
@@ -27,12 +27,12 @@ def _replace_item(x):
         return 1
 
 
-#order: [height, weight, shoe size]
+# Order: [height, weight, shoe size]
 samples = [ [181, 80, 44], [177, 70, 43], [160, 60, 38], [154, 54, 37], [166, 65, 40],
             [190, 90, 47], [175, 64, 39],
             [177, 70, 40], [159, 55, 37], [171, 75, 42], [181, 85, 43]]
 
-#gender
+# Gender
 labels = ['male', 'male', 'female', 'female', 'male', 'male', 'female', 'female',
           'female', 'male', 'male']
 
@@ -41,14 +41,14 @@ reference_labels = ['male', 'male', 'female', 'female']
 reference_labels_binary = np.asarray([0, 0, 1, 1])
 
 
-#classifiers
+# Classifiers
 clfs = [DecisionTreeClassifier(), GaussianProcessClassifier(), RandomForestClassifier(), AdaBoostClassifier(), GaussianNB(), SVC()]
 for clf in clfs:
     clf = clf.fit(samples, labels)
     prediction = clf.predict(validation_set)
-    #prediction_binary = np.asarray(map(lambda x: 0 if x == ['male'] else 1, prediction))
+    # Prediction_binary = np.asarray(map(lambda x: 0 if x == ['male'] else 1, prediction))
     print(list(prediction))
-    prediction_binary = np.asarray(list(map(int, list(map(lambda x: '0' if x=='male' else '1', list(prediction))))))
+    prediction_binary = np.asarray(list(map(int, list(map(lambda x: '0' if x == 'male' else '1', list(prediction))))))
         
     print(clf)
     print(prediction)
